@@ -3,6 +3,8 @@ import api from './routes/api.js'
 import path from 'path'
 import cors from 'cors'
 import { fileURLToPath } from 'url'
+import { configDotenv } from "dotenv";
+configDotenv()
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -16,6 +18,6 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/api/v1', api)
 
-app.listen(3000, () => {
-    console.log('Server running on port 3000')
+app.listen(process.env.APP_PORT, () => {
+    console.log('Server running on port ' + process.env.APP_PORT)
 })
